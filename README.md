@@ -17,7 +17,7 @@ The app currently displays a list of todos (initially empty) and has a form to a
 - The route should accept JSON with a `todo` field, add it to the array, and return the updated array or a success response.
 
 ### Frontend (public/app.js)
-- Implement the form submission event listener.
+- Implement the form submission event listener. (currently working on this)
 - On submit, prevent default, get the input value, send a POST request to `/todos` with the todo, then reload the todos list.
 
 Once completed, you should be able to add todos and see them displayed.

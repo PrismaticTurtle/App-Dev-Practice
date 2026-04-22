@@ -11,10 +11,12 @@ app.get('/todos', (req, res) => {
 });
 
 // TODO: Implement the POST route to add a new todo
-// app.post('/todos', (req, res) => {
-//   // Add the todo from req.body to the todos array
-//   // Send back the updated todos or a success message
-// });
+app.post('/todos', (req, res) => {
+  // Add the todo from req.body to the todos array
+  todos.push(req.body.todo);
+  // Send back the updated todos or a success message
+  res.json(todos);
+});
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');

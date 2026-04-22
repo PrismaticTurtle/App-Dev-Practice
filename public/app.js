@@ -3,6 +3,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const addForm = document.getElementById('add-todo-form');
   const input = document.getElementById('todo-input');
 
+  // This sends a Post request
+  async function sendPost(data) {
+    const url = '/todos'; // The endpoint to send the POST request to
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json' // Tell the server we are sending JSON
+        },
+        body: JSON.stringify(data) // Convert the JS object to a JSON string
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json(); // Parse response as JSON
+      console.log('Success:', result);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
   // Function to fetch and display todos
   function loadTodos() {
     fetch('/todos')
@@ -22,13 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
   loadTodos();
 
   // TODO: Implement the form submission to add a new todo
-  // addForm.addEventListener('submit', (e) => {
-  //   e.preventDefault();
-  //   const newTodo = input.value.trim();
-  //   if (newTodo) {
-  //     // Send POST request to /todos with the new todo
-  //     // Then reload the todos
-  //     input.value = '';
-  //   }
-  // });
+  addForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newTodo = input.value.trim();
+    if (newTodo) {
+      // Send POST request to /todos with the new todo
+      sendPost({ text: newTodo });
+      // Then reload the todos
+      input.value = '';
+   }
+ });
 });
