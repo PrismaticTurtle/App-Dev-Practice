@@ -10,7 +10,6 @@ app.get('/todos', (req, res) => {
   res.json(todos);
 });
 
-// TODO: Implement the POST route to add a new todo
 app.post('/todos', (req, res) => {
   // Add the todo from req.body to the todos array
   todos.push(req.body.todo);

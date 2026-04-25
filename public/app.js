@@ -45,15 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load todos on page load
   loadTodos();
 
-  // TODO: Implement the form submission to add a new todo
   addForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const newTodo = input.value.trim();
     if (newTodo) {
       // Send POST request to /todos with the new todo
-      sendPost({ text: newTodo });
+      sendPost({ todo: newTodo });
       // Then reload the todos
       input.value = '';
+      // Refresh todos afterwards
+      loadTodos();
    }
  });
 });
