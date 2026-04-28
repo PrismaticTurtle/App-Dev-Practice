@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newTodo = input.value.trim();
     if (newTodo) {
       // Send POST request to /todos with the new todo
-      sendPost({ todo: newTodo });
+      await sendPost({ todo: newTodo });
       // Then reload the todos
       input.value = '';
       // Refresh todos afterwards
